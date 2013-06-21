@@ -215,8 +215,25 @@ public class Runner extends Libs {
       sleep(2);
       print("When you've found it, just hit exit to put it in.");
       checkKey("This is the secret!!","Head's like cat, but different.");
+      changeLevel(8);
+      clear();
+      print("Yeah, I thought you'd pick that up pretty quickly.");
+      print("It's very straightforward, even for you.");
+      sleep();
+      print("...yeah, I know my insults are getting kind of lame...");
+      sleep();
+      print("Unfortunately, I've run out of vocabulary to explain how much I hate you.");
+      sleep();
+      print("I know where you live...");
+      sleep();
+      print("121 Blake Rd  Annapolis, MD 21402...");
+      sleep();
+      print(">:D");
+      sleep();
 		case 8:
-		  
+		  print("For your next task, I'm going to assign you two things at the same time.");
+		  sleep();
+		  print("...I can hear your brain falling apart from here.");
 		case 9:
 		  
 		case 10:
