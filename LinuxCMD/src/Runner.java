@@ -194,8 +194,27 @@ public class Runner extends Libs {
 		  deleteFile("./link.txt");
 		  deleteFile("./.script2.sh");
 		  print("I must say, you're better at this than I thought.");
+		  sleep();
 		case 7:
 		  print("Alright then, next up on your tasklist is using head.");
+		  sleep();
+		  print("I have written a large file called \"text.txt\" to the folder I'm about to put you in");
+		  print("Your job is to find the secret key in the file. But don't worry, you won't be searching forever.");
+		  sleep();
+		  print(">:D");
+		  sleep();
+		  print("Here's the trick. The key is somewhere in the first 10 lines of the file.");
+		  print("And don't worry, you'll know the key when you see it.");
+		  String str = randomFile(20) + "\n";
+		  for(int i = 0; i <=2; i++)
+		    str += randomFile(70) + "\n";
+		  str += "This is the secret!!\n";
+      for(int i = 0; i <=200; i++)
+        str += randomFile(70) + "\n";
+      writeFile("./text.txt",str);
+      sleep(2);
+      print("When you've found it, just hit exit to put it in.");
+      checkKey("This is the secret!!","Head's like cat, but different.");
 		case 8:
 		  
 		case 9:
