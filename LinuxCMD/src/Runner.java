@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Runner extends Libs {
+  
 	@SuppressWarnings("deprecation")
   public static void main(String[] args) throws IOException, InterruptedException {
 		final String os = System.getProperty("os.name").toLowerCase();
@@ -234,6 +235,26 @@ public class Runner extends Libs {
 		  print("For your next task, I'm going to assign you two things at the same time.");
 		  sleep();
 		  print("...I can hear your brain falling apart from here.");
+		  sleep();
+		  print("As a note, I have calculated your IQ at an astoundingly low 32 points.");
+		  sleep();
+		  print("I have made this judgement based on...");
+		  sleep();
+		  print("...");
+		  sleep();
+		  print("Never mind, it's time to move on.");
+		  sleep();
+		  print("For your next task, you're going to tell me what the first 4 hex characters are for this file.");
+		  sleep(2);
+		  writeFile("./.text.txt","I'd use hexdump if I were you." + readFile("./.text.txt"));
+		  print("Oh wait, do you not understand how hexadecimal works?");
+		  print("...well, I don't feel like writing another task so I'm just going to give you a link:");
+		  print("http://www.codemastershawn.com/library/tutorial/hex.bin.numbers.php");
+		  print("I'll wait, just press enter when you're ready to move on...");
+		  print("After all, what else am I supposed to do?");
+		  input.nextLine();
+		  
+		  
 		case 9:
 		  
 		case 10:
