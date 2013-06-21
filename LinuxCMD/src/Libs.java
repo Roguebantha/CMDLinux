@@ -189,6 +189,11 @@ public static String run(String command) throws IOException, InterruptedExceptio
   public static void sleep() throws InterruptedException {
     sleep(3);
   }
+  /**
+   * Sleeps for entered amount of seconds, if shouldIsleep == true
+   * @param Number of seconds to sleep
+   * @throws InterruptedException
+   */
   public static void sleep(long i) throws InterruptedException {
     if(shouldIsleep)
       Thread.sleep(i * 1000);

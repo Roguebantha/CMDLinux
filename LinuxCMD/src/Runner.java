@@ -191,10 +191,11 @@ public class Runner extends Libs {
 		      print("Wrong.");
 		  }
 		  changeLevel(7);
+		  deleteFile("./link.txt");
 		  deleteFile("./.script2.sh");
 		  print("I must say, you're better at this than I thought.");
 		case 7:
-		  
+		  print("Alright then, next up on your tasklist is using head.");
 		case 8:
 		  
 		case 9:
