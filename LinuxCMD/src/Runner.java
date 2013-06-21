@@ -244,17 +244,28 @@ public class Runner extends Libs {
 		  sleep();
 		  print("Never mind, it's time to move on.");
 		  sleep();
-		  print("For your next task, you're going to tell me what the first 4 hex characters are for this file.");
+		  print("For your next task, you're going to tell me what the first 4 hex characters are for this file...");
 		  sleep(2);
-		  writeFile("./.text.txt","I'd use hexdump if I were you." + readFile("./.text.txt"));
+		  writeFile("./text.txt","I'd use hexdump if I were you." + readFile("./.text.txt"));
 		  print("Oh wait, do you not understand how hexadecimal works?");
 		  print("...well, I don't feel like writing another task so I'm just going to give you a link:");
 		  print("http://www.codemastershawn.com/library/tutorial/hex.bin.numbers.php");
 		  print("I'll wait, just press enter when you're ready to move on...");
 		  print("After all, what else am I supposed to do?");
 		  input.nextLine();
-		  
-		  
+		  print("Oh good! Are you ready?");
+		  sleep();
+		  print("I sure hope it's come to your attention that this means all files are made of binary/hex right?");
+		  print("Alright, so your job is to find the first four hex chars for the file \"text.txt\", you know, the same file we just used?");
+		  print("When you find them, realize that they are...the secret key...");
+		  print("Oh yeah, while you're at it, figure out how pipes work.");
+		  checkKey("2749","Use hexdump silly. And \"head\" will help you out too. But you're gonna need a pipe to link 'em together...");
+		  changeLevel(9);
+		  print("Well! You...succeeded...");
+		  print("I suppose...");
+		  print("Of course, I suspect you needed a lot of help on that one.");
+		  print("You could have never done it without me.");
+		  sleep();
 		case 9:
 		  
 		case 10:
