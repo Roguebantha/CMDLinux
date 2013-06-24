@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Runner extends Libs {
-  
+
 	@SuppressWarnings("deprecation")
   public static void main(String[] args) throws IOException, InterruptedException {
 		final String os = System.getProperty("os.name").toLowerCase();
@@ -26,8 +26,7 @@ public class Runner extends Libs {
 		clear();
 		createFile("./.data/cmd");
 		run("chmod 755 ./.data/cmd");
-		final int level = Integer.parseInt(readFile("./.data/level"));
-		switch(level) {
+		switch(Integer.parseInt(readFile("./.data/level"))) {
 		case 1:
 		  print("To exit the game at any time, hit Ctrl-C");
 	    print("Hello puny human. My name is TCIAL. My job is to foil you at every turn and render all of your puny hopes and dreams to dust.");
@@ -303,11 +302,9 @@ public class Runner extends Libs {
 		  print("No more will I dally along, going easy on you!");
 		  print("YOU WILL NEVER WIN!!");
 		case 10:
-		  print("...for your next...task...");
+		  print("...for your next...and final...task...");
 		  sleep();
-		  print("And for your final one...");
-		  sleep();
-		  
+
 		}
 		print("Well...after all this time, I, the great TCIAL, have been unable to defeat you...");
 		sleep();
