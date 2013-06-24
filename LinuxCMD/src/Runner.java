@@ -294,7 +294,20 @@ public class Runner extends Libs {
 		      print("Wrong.");
 		  }while(!level9);
 		  deleteFile("./.script3.sh");
+		  print("Well...");
+		  sleep();
+		  print("Apparently I'm going to need every ounce of skill to defeat you!");
+		  sleep();
+		  print("So now the challenge is on...");
+		  print("I'll use every tool I have at my disposal to defeat you!");
+		  print("No more will I dally along, going easy on you!");
+		  print("YOU WILL NEVER WIN!!");
 		case 10:
+		  print("...for your next...task...");
+		  sleep();
+		  print("And for your final one...");
+		  sleep();
+		  
 		}
 		print("Well...after all this time, I, the great TCIAL, have been unable to defeat you...");
 		sleep();
