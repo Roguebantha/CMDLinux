@@ -171,7 +171,7 @@ public static String run(String command) throws IOException, InterruptedExceptio
    */
   public static String runFull(String command) throws IOException, InterruptedException{
     writeFile("./.data/cmd",command);
-    return run("./.data/cmd");
+    return script("./.data/cmd");
    }
   public static String script(String script) throws IOException, InterruptedException {
     String arg = "";

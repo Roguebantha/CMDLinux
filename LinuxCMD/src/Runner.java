@@ -10,6 +10,7 @@ public class Runner extends Libs {
 			print(os +" is not supported!");
 			return;
 		}
+		changeLevel(9);
 		boolean arg[] = {false,false,false};
 		arg = processArgs(args);
 		if(arg[0])
@@ -267,7 +268,32 @@ public class Runner extends Libs {
 		  print("You could have never done it without me.");
 		  sleep();
 		case 9:
-		  
+		  print("Well, I think it's time you figure out how if statements work in Linux shell scripting.");
+		  sleep();
+		  print("This isn't exactly an easy subject.");
+		  print("Heck, do you even understand how an if statement works?");
+		  sleep();
+		  print("Or even what an if statement is??");
+		  sleep();
+		  print("Hehehe...");
+		  sleep();
+		  print("Soooo...I think I'll leave you to figure out what if statements are by yourself!");
+		  sleep();
+		  clear();
+		  print("For your next task...");
+		  print("You will write a script called script3.sh.");
+		  print("If I give the script the argument \"true\", the script should return \"Hello\".");
+		  print("Otherwise, it should return \"world\".");
+		  print("When your script is ready, put it in:");
+		  print(runFull("pwd"));
+		  print("And then hit enter.");
+		  boolean level9;
+		  do {
+		    input.nextLine();
+		    if(!(level9 = script("script3.sh true").equals("Hello") && script("script3.sh false").equals("world")))
+		      print("Wrong.");
+		  }while(!level9);
+		  deleteFile("./.script3.sh");
 		case 10:
 		}
 		print("Well...after all this time, I, the great TCIAL, have been unable to defeat you...");
