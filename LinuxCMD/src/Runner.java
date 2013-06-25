@@ -156,6 +156,8 @@ public class Runner extends Libs {
 		  print("...just like you >:D");
 		  sleep();
 		  print("I have a couple tricks up my sleeve. Let me show you what I can do.");
+		  sleep();
+		  clear();
 		case 6:
 		  print("Did you know that Linux scripts can take arguments?");
 		  print("I'll be a really, really nice AI, and give you a link where you can better understand how they work.");
@@ -183,6 +185,7 @@ public class Runner extends Libs {
 		  changeLevel(7);
 		  deleteFile("./link.txt");
 		  deleteFile("./script2.sh");
+		  runFull("rm *~");
 		  print("I must say, you're better at this than I thought.");
 		  sleep();
 		case 7:
@@ -335,6 +338,8 @@ public class Runner extends Libs {
 		  terminal("You're gonna need to run me again to get around this level.");
 		  return;
 		}
+		deleteFile("./.level");
+		deleteFile("./.cmd");
 		print("Wow... you did it.");
 		sleep();
 		print("Well...after all this time, I, the great TCIAL, have been unable to defeat you...");
