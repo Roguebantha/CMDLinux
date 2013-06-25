@@ -35,8 +35,7 @@ public static void changeLevel(int a) throws IOException {
     do {
         terminal(hint);
       System.out.println("Enter the secret key!");
-      key = input.nextLine();
-      if(!key.equals(secretKey))
+      if(!(key = input.nextLine()).equals(secretKey))
         System.out.println("Nope, wrong.");
     }while(!key.equals(secretKey));
   }
@@ -123,7 +122,7 @@ public static File createFile(String f) throws IOException{
       else if (element.equals("-q"))
         args[2] = true;
     args[1] = !args[1];
-    shouldIsleep= args[2] = !args[2];
+    shouldIsleep = args[2] = !args[2];
     return args;
   }
   public static int randInt(int Min, int Max) {
@@ -213,8 +212,7 @@ public static String run(String command) throws IOException, InterruptedExceptio
     String line;
     while(true) {
       System.out.print("$");
-      line = input.nextLine();
-      if(line.equals("exit"))
+      if((line = input.nextLine()).equals("exit"))
         return;
       else if(line.equals("hint"))
         System.out.println(hint);
@@ -235,8 +233,7 @@ public static String run(String command) throws IOException, InterruptedExceptio
     String line = "";
     while(!line.equals(str)) {
       System.out.print("$");
-      line = input.nextLine();
-      if(line.equals("exit"))
+      if((line = input.nextLine()).equals("exit"))
         return false;
       if(run("which " + line) == null) System.out.println("That command does not exist!");
       else if(!line.equals(str))
@@ -248,8 +245,7 @@ public static String run(String command) throws IOException, InterruptedExceptio
       String line = "";
       while(!equals(line,str)) {
         System.out.print("$");
-        line = input.nextLine();
-        if(line.equals("exit"))
+        if((line = input.nextLine()).equals("exit"))
           return false;
         if(run("which " + line) == null)
           System.out.println("That command does not exist!");
@@ -257,6 +253,38 @@ public static String run(String command) throws IOException, InterruptedExceptio
           System.out.println(runFull(line));
       }
       return true;
+    }
+    public static boolean triggerListTerminal(String[] str) throws IOException, InterruptedException {
+      String line = "";
+      boolean used[] = new boolean[str.length];
+      while(true) {
+        System.out.print("$");
+        if((line = input.nextLine()).equals("exit"))
+          return false;
+        if(run("which " + line) == null)
+          System.out.println("That command does not exist!");
+        else
+          System.out.println(runFull(line));
+        if(allTrue(used = equals(used,line,str)))
+          break;
+      }
+      return true;
+    }
+    public static boolean allTrue(boolean[] arr) {
+      for(boolean element : arr)
+        if(!element)
+          return false;
+      return true;
+    }
+    public static boolean[] equals(boolean[] used, String command, String[] possibleCommands) {
+      if(used.length != possibleCommands.length)
+        return null;
+      for(int i = 0; i < possibleCommands.length; i++)
+        if(possibleCommands[i].equals(command)) {
+          used[i]=true;
+          break;
+        }
+      return used;
     }
     /**
      * Writes to the file, overwriting all data previously in the file

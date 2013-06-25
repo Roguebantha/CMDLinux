@@ -10,9 +10,7 @@ public class Runner extends Libs {
 			print(os +" is not supported!");
 			return;
 		}
-		changeLevel(9);
-		boolean arg[] = {false,false,false};
-		arg = processArgs(args);
+		boolean[] arg = processArgs(args);
 		if(arg[0])
 		  changeLevel(1);
 		final File data = new File("./.data");
@@ -36,11 +34,11 @@ public class Runner extends Libs {
 	    print("I have been created to assign you impossibly difficult tasks to make you demoralized and uncertain!");
 	    sleep();
 	    print("Hahahaha! Good luck! >:D");
-	    Thread.sleep(2500);
+	    sleep((long) 2.5);
 	    clear();
 		  print("For your first task...in which you will surely fail...");
 		  sleep(2);
-		  writeFile("./secret_key","");
+		  writeFile("./secret_key","cat is the best thing ever!");
 		  final StopWatch stopwatch = new StopWatch();
 		  print("You must find out what the key is to move on! The key is located in the folder which I am about to dump you in...");
 		  print("You must find the contents of the folder, or list them as it might be called, and discover the secret key!");
@@ -50,10 +48,9 @@ public class Runner extends Libs {
 		  checkKey("secret_key","Look up ls!");
 		  print("Hmph...I'm disappointed...I thought you would have gotten it faster!");
 		  print("It took you a whole " + stopwatch.getElapsedTimeSecs() + " seconds!");
-		  stopwatch.stop();
 		  print("Well, with that disappointing exercise, I think it's better if we move on don't you think?");
+		  stopwatch.stop();
 		  sleep();
-		  writeFile("./secret_key","cat is the best thing ever!");
 		  changeLevel(2);
 		case 2:
 		  print("Your next task is much more difficult!");
@@ -62,8 +59,7 @@ public class Runner extends Libs {
       print("Enter the data found in the secret key!");
       print("But I cannot make things easy for you...");
       if(arg[2]) {
-        sleep();
-        sleep();
+        sleep(6);
         clear();
       }
       print("To get the contents, you must use the program cat, I mean, dog, with the file as the argument!");
@@ -302,9 +298,24 @@ public class Runner extends Libs {
 		  print("No more will I dally along, going easy on you!");
 		  print("YOU WILL NEVER WIN!!");
 		case 10:
-		  print("...for your next...and final...task...");
+		  print("...for your next task...");
 		  sleep();
-
+		  print("You must learn how mv, rm, and cp work.");
+		  sleep();
+		  print("They're very important commands for a Linux user to have in their arsenal.");
+		  sleep();
+		  print("With them, you can move, remove, and copy files.");
+		  sleep();
+		  print("...I'm sure hoping you can figure out which is which.");
+		  sleep();
+		  clear();
+		  print("In general, the file to change is the first argument to the command.");
+		  print("In the case of the move and copy commands, the second argument is where the file is to be copied or moved to.");
+		  print("You can even use the move command as a rename command!");
+		  sleep();
+		  print("Ooh, that gives me an idea...");
+		  sleep();
+		  clear();
 		}
 		print("Well...after all this time, I, the great TCIAL, have been unable to defeat you...");
 		sleep();
