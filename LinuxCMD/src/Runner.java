@@ -321,6 +321,7 @@ public class Runner extends Libs {
 		  print("I have put a file called file1.txt into a folder. You are to rename it to file2.txt.");
 		  print("This isn't exactly difficult.");
 		  print("So do it right.");
+		  createFile("file1.txt");
 		  triggerTerminal("mv file1.txt file2.txt");
 		  changeLevel(11);
 		  print("Well alright then.");
