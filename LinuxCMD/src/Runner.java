@@ -288,6 +288,7 @@ public class Runner extends Libs {
 		    if(!(level9 = script("script3.sh true").equals("Hello") && script("script3.sh false").equals("world")))
 		      print("Wrong.");
 		  }while(!level9);
+		  changeLevel(10);
 		  deleteFile("./.script3.sh");
 		  print("Well...");
 		  sleep();
@@ -316,7 +317,29 @@ public class Runner extends Libs {
 		  print("Ooh, that gives me an idea...");
 		  sleep();
 		  clear();
+		  print("For your next trick...");
+		  print("I have put a file called file1.txt into a folder. You are to rename it to file2.txt.");
+		  print("This isn't exactly difficult.");
+		  print("So do it right.");
+		  triggerTerminal("mv file1.txt file2.txt");
+		  changeLevel(11);
+		  print("Well alright then.");
+		  print("Fine. Be that way. You have one last challenge.");
+		case 11:
+		  print("There's no way to pass this level.");
+		  print("Quite literally, you must go around it.");
+		  print("You see, I've been saving what level you've been on this whole time.");
+		  print("For example, I can tell you that you are on level " + readFile("./.data/level"));
+		  print("The save data is in this folder:");
+		  print(run("pwd"));
+		  print("But it's hidden.");
+		  print("I'll put you in a terminal so that you can find it...");
+		  print("Maybe you'll be able to come up with an idea on how to get to level 12.");
+		  terminal("You're gonna need to run me again to get around this level.");
+		  return;
 		}
+		print("Wow... you did it.");
+		sleep();
 		print("Well...after all this time, I, the great TCIAL, have been unable to defeat you...");
 		sleep();
 		print("It depresses me to say this, but you have indeed proved your worth in programming Linux shells.");
