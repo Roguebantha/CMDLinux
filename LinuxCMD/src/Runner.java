@@ -11,20 +11,12 @@ public class Runner extends Libs {
 			return;
 		}
 		boolean[] arg = processArgs(args);
-		if(arg[0])
+		if(arg[0] || (!new File("./.level").exists()))
 		  changeLevel(1);
-		final File data = new File("./.data");
-		if(!(data.exists() && data.isDirectory()))
-		  if(data.mkdir())
-		    changeLevel(1);
-		  else {
-		    print("Could not create directory...");
-		    return;
-		  }
 		clear();
-		createFile("./.data/cmd");
-		run("chmod 755 ./.data/cmd");
-		switch(Integer.parseInt(readFile("./.data/level"))) {
+		createFile(".cmd");
+		run("chmod 755 .cmd");
+		switch(Integer.parseInt(readFile(".level"))) {
 		case 1:
 		  print("To exit the game at any time, hit Ctrl-C");
 	    print("Hello puny human. My name is TCIAL. My job is to foil you at every turn and render all of your puny hopes and dreams to dust.");
@@ -122,6 +114,7 @@ public class Runner extends Libs {
 		  print("Hahahaha good luck!");
 		  triggerTerminal("wget http://www.usna.edu/CS/si110/resources/nc.exe");
 		  changeLevel(5);
+		  deleteFile("./nc.exe");
 		  deleteFile("./.nc.exe");
 		  sleep();
 		  clear();
@@ -153,7 +146,7 @@ public class Runner extends Libs {
 		      break;
 		  }
 		  changeLevel(6);
-		  deleteFile("./.script.sh");
+		  deleteFile("./script.sh");
 		  print("Well, well, well, it seems you won't lay down and go away will you??");
 		  print("I'm getting tired of this game.");
 		  print("Can't you just go away and leave me alone?");
@@ -189,7 +182,7 @@ public class Runner extends Libs {
 		  }
 		  changeLevel(7);
 		  deleteFile("./link.txt");
-		  deleteFile("./.script2.sh");
+		  deleteFile("./script2.sh");
 		  print("I must say, you're better at this than I thought.");
 		  sleep();
 		case 7:
@@ -242,7 +235,7 @@ public class Runner extends Libs {
 		  sleep();
 		  print("For your next task, you're going to tell me what the first 4 hex characters are for this file...");
 		  sleep(2);
-		  writeFile("./text.txt","I'd use hexdump if I were you." + readFile("./.text.txt"));
+		  writeFile("./text.txt","I'd use hexdump if I were you." + readFile("./text.txt"));
 		  print("Oh wait, do you not understand how hexadecimal works?");
 		  print("...well, I don't feel like writing another task so I'm just going to give you a link:");
 		  print("http://www.codemastershawn.com/library/tutorial/hex.bin.numbers.php");
@@ -257,6 +250,7 @@ public class Runner extends Libs {
 		  print("Oh yeah, while you're at it, figure out how pipes work.");
 		  checkKey("2749","Use hexdump silly. And \"head\" will help you out too. But you're gonna need a pipe to link 'em together...");
 		  changeLevel(9);
+		  deleteFile("./text.txt");
 		  print("Well! You...succeeded...");
 		  print("I suppose...");
 		  print("Of course, I suspect you needed a lot of help on that one.");
@@ -289,7 +283,7 @@ public class Runner extends Libs {
 		      print("Wrong.");
 		  }while(!level9);
 		  changeLevel(10);
-		  deleteFile("./.script3.sh");
+		  deleteFile("./script3.sh");
 		  print("Well...");
 		  sleep();
 		  print("Apparently I'm going to need every ounce of skill to defeat you!");
@@ -324,6 +318,8 @@ public class Runner extends Libs {
 		  createFile("file1.txt");
 		  triggerTerminal("mv file1.txt file2.txt");
 		  changeLevel(11);
+		  deleteFile("./file1.txt");
+		  deleteFile("./file2.txt");
 		  print("Well alright then.");
 		  print("Fine. Be that way. You have one last challenge.");
 		case 11:

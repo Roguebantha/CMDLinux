@@ -22,12 +22,12 @@ public class Libs
  * @throws IOException
  */
 public static void changeLevel(int a) throws IOException {
-  writeFile("./.data/level",Integer.toString(a));
+  writeFile("./.level",Integer.toString(a));
 }
 public static int returnLevel() {
   try
   {
-    return Integer.parseInt(readFile("./.data/level"));
+    return Integer.parseInt(readFile("./.level"));
   }
   catch (NumberFormatException | IOException | InterruptedException e)
   {
@@ -186,8 +186,8 @@ public static String run(String command) throws IOException, InterruptedExceptio
    * @throws InterruptedException
    */
   public static String runFull(String command) throws IOException, InterruptedException{
-    writeFile("./.data/cmd",command);
-    return script("./.data/cmd");
+    writeFile(".cmd",command);
+    return script(".cmd");
    }
   public static String script(String script) throws IOException, InterruptedException {
     String arg = "";
