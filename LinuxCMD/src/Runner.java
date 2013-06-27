@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.IOException;
-
 public class Runner extends Libs {
-
 	@SuppressWarnings("deprecation")
   public static void main(String[] args) throws IOException, InterruptedException {
 		final String os = System.getProperty("os.name").toLowerCase();
