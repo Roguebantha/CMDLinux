@@ -82,6 +82,8 @@ public class Runner extends Libs {
 		  print("Let me think of something appropriately hard...");
 		  sleep();
 		  print("Aha! I have something!");
+		  String temp= null;
+
 		  sleep();
 		  print("Print \"Hello World\" on the terminal!");
 		  sleep();
@@ -126,8 +128,7 @@ public class Runner extends Libs {
 		  print("You seem to remain no matter what I do to get rid of you.");
 		  print("I need to end this!");
 		  print("So...hehe...you better figure out how scripts work and fast!");
-		  sleep();
-		  sleep(2);
+		  sleep(5);
 		  clear();
 		  print("Here are the rules...");
 		  print("If I run the script, it prints \"TCIAL is awesome!\"");
@@ -253,11 +254,11 @@ public class Runner extends Libs {
 		  print("Oh yeah, while you're at it, figure out how pipes work.");
 		  checkKey("2749","Use hexdump silly. And \"head\" will help you out too. But you're gonna need a pipe to link 'em together...");
 		  changeLevel(9);
-		  deleteFile("./text.txt");
 		  print("Well! You...succeeded...");
 		  print("I suppose...");
 		  print("Of course, I suspect you needed a lot of help on that one.");
 		  print("You could have never done it without me.");
+      deleteFile("./text.txt");
 		  sleep();
 		case 9:
 		  print("Well, I think it's time you figure out how if statements work in Linux shell scripting.");
@@ -329,7 +330,7 @@ public class Runner extends Libs {
 		  print("There's no way to pass this level.");
 		  print("Quite literally, you must go around it.");
 		  print("You see, I've been saving what level you've been on this whole time.");
-		  print("For example, I can tell you that you are on level " + readFile("./.data/level"));
+		  print("For example, I can tell you that you are on level " + readFile("./.level"));
 		  print("The save data is in this folder:");
 		  print(run("pwd"));
 		  print("But it's hidden.");
