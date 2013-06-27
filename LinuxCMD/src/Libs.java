@@ -24,16 +24,8 @@ public class Libs
 public static void changeLevel(int a) throws IOException {
   writeFile("./.level",Integer.toString(a));
 }
-public static int returnLevel() {
-  try
-  {
+public static int returnLevel() throws NumberFormatException, IOException, InterruptedException {
     return Integer.parseInt(readFile("./.level"));
-  }
-  catch (NumberFormatException | IOException | InterruptedException e)
-  {
-    print("Got an error, I don't think that's a number.");
-    return 0;
-  }
 }
   /**
    * Continues to put the user into a terminal until they enter the correct key upon exiting the terminal.
