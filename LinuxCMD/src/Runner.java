@@ -16,7 +16,7 @@ public class Runner extends Libs {
 		clear();
 		createFile(".cmd");
 		run("chmod 755 .cmd");
-		switch(Integer.parseInt(readFile(".level"))) {
+		switch(returnLevel()) {
 		case 1:
 		  print("To exit the game at any time, hit Ctrl-C");
 	    print("Hello puny human. My name is TCIAL. My job is to foil you at every turn and render all of your puny hopes and dreams to dust.");
