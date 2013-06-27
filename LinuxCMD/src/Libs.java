@@ -80,19 +80,12 @@ public static File createFile(String f) throws IOException{
   }
   public static void forceDelete(File file) throws IOException
   {
-      if(file.isDirectory())
-        if(file.list().length==0)
-           file.delete();
-        else
-        {
+      if(file.isDirectory() && file.list().length > 0) {
              final String files[] = file.list();
              for (final String temp : files)
                forceDelete(new File(file, temp));
-             if(file.list().length==0)
-                 file.delete();
-        }
-      else
-        file.delete();
+      }
+      file.delete();
     }
   /**
    * Recursively deletes a file or folder
@@ -107,7 +100,6 @@ public static File createFile(String f) throws IOException{
    * @return The file as an object
    */
   public static File objFile(String file){
-
       return new File(file);
     }
   public static void print(String str) {
@@ -116,7 +108,7 @@ public static File createFile(String f) throws IOException{
   public static boolean[] processArgs(String[] arg) {
     if(arg.length == 0)
       return new boolean[3];
-    final boolean[] args = new boolean[3];
+    boolean[] args = new boolean[3];
     for(final String element : arg)
       if(element.equals("-d"))
         args[0] = true;
@@ -125,7 +117,7 @@ public static File createFile(String f) throws IOException{
       else if (element.equals("-q"))
         args[2] = true;
     args[1] = !args[1];
-    shouldIsleep = args[2] = !args[2];
+    shouldIsleep = (args[2] = !args[2]);
     return args;
   }
   public static int randInt(int Min, int Max) {
