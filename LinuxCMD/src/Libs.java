@@ -12,10 +12,16 @@ public class Libs
   static Scanner input = new Scanner(System.in);
   static boolean shouldIsleep = true;
   static boolean shouldIclear = true;
-  public static  String[] array(String... elems)
-  {
-    return elems;
+  public static boolean allTrue(boolean[] arr) {
+    for(final boolean element : arr)
+      if(!element)
+        return false;
+    return true;
   }
+public static  String[] array(String... elems)
+{
+  return elems;
+}
 /**
  * Change the level the user is on
  * @param The level to change to
@@ -23,9 +29,6 @@ public class Libs
  */
 public static void changeLevel(int a) throws IOException {
   writeFile("./.level",Integer.toString(a));
-}
-public static int returnLevel() throws NumberFormatException, IOException, InterruptedException {
-    return Integer.parseInt(readFile("./.level"));
 }
   /**
    * Continues to put the user into a terminal until they enter the correct key upon exiting the terminal.
@@ -72,6 +75,16 @@ public static File createFile(String f) throws IOException{
   public static boolean deleteFile(String file) {
     return new File(file).delete();
   }
+  public static boolean[] equals(boolean[] used, String command, String[] possibleCommands) {
+    if(used.length != possibleCommands.length)
+      return null;
+    for(int i = 0; i < possibleCommands.length; i++)
+      if(possibleCommands[i].equals(command)) {
+        used[i]=true;
+        break;
+      }
+    return used;
+  }
   public static boolean equals(String str, String[] strings) {
     for(final String element : strings)
       if(str.equals(element))
@@ -108,7 +121,7 @@ public static File createFile(String f) throws IOException{
   public static boolean[] processArgs(String[] arg) {
     if(arg.length == 0)
       return new boolean[3];
-    boolean[] args = new boolean[3];
+    final boolean[] args = new boolean[3];
     for(final String element : arg)
       if(element.equals("-d"))
         args[0] = true;
@@ -117,7 +130,7 @@ public static File createFile(String f) throws IOException{
       else if (element.equals("-q"))
         args[2] = true;
     args[1] = !args[1];
-    shouldIsleep = (args[2] = !args[2]);
+    shouldIsleep = args[2] = !args[2];
     return args;
   }
   public static int randInt(int Min, int Max) {
@@ -140,6 +153,9 @@ public static File createFile(String f) throws IOException{
    */
   public static String readFile(String file) throws IOException, InterruptedException{
     return run("cat " + file);
+  }
+  public static int returnLevel() throws NumberFormatException, IOException, InterruptedException {
+      return Integer.parseInt(readFile("./.level"));
   }
   /**
    * Runs a Linux command. This method is deprecated. Use runFull() instead.
@@ -198,56 +214,24 @@ public static String run(String command) throws IOException, InterruptedExceptio
     if(shouldIsleep)
       Thread.sleep(i * 1000);
   }
-  /**
-   * Runs a terminal until the user enters "exit".
-   * @throws IOException
-   * @throws InterruptedException
-   */
-  public static void terminal(String hint) throws IOException, InterruptedException {
-    String line;
-    while(true) {
-      System.out.print("$");
-      if((line = input.nextLine()).equals("exit"))
-        return;
-      else if(line.equals("hint"))
-        System.out.println(hint);
-      else if(run("which " + line) == null)
-        System.out.println("That command does not exist!");
-      else
-        System.out.println(runFull(line));
-    }
-  }
-  /**
-   * Keeps the user in a Linux shell until he enters the correct command or types "exit"
-   * @param Command the user needs to enter
-   * @return Whether the user ever entered the right command or not. Will return false if the user types "exit"
-   * @throws IOException
-   * @throws InterruptedException
-   */
-  public static boolean triggerTerminal(String str) throws IOException, InterruptedException {
-    String line = "";
-    while(!line.equals(str)) {
-      System.out.print("$");
-      if((line = input.nextLine()).equals("exit"))
-        return false;
-      if(run("which " + line) == null) System.out.println("That command does not exist!");
-      else if(!line.equals(str))
-        System.out.println(runFull(line));
-    }
-    return true;
-  }
-    public static boolean triggerTerminal(String[] str) throws IOException, InterruptedException {
-      String line = "";
-      while(!equals(line,str)) {
+    /**
+     * Runs a terminal until the user enters "exit".
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void terminal(String hint) throws IOException, InterruptedException {
+      String line;
+      while(true) {
         System.out.print("$");
         if((line = input.nextLine()).equals("exit"))
-          return false;
-        if(run("which " + line) == null)
+          return;
+        else if(line.equals("hint"))
+          System.out.println(hint);
+        else if(run("which " + line) == null)
           System.out.println("That command does not exist!");
         else
           System.out.println(runFull(line));
       }
-      return true;
     }
     public static boolean triggerListTerminal(String[] str) throws IOException, InterruptedException {
       String line = "";
@@ -265,21 +249,37 @@ public static String run(String command) throws IOException, InterruptedExceptio
       }
       return true;
     }
-    public static boolean allTrue(boolean[] arr) {
-      for(boolean element : arr)
-        if(!element)
+    /**
+     * Keeps the user in a Linux shell until he enters the correct command or types "exit"
+     * @param Command the user needs to enter
+     * @return Whether the user ever entered the right command or not. Will return false if the user types "exit"
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static boolean triggerTerminal(String str) throws IOException, InterruptedException {
+      String line = "";
+      while(!line.equals(str)) {
+        System.out.print("$");
+        if((line = input.nextLine()).equals("exit"))
           return false;
+        if(run("which " + line) == null) System.out.println("That command does not exist!");
+        else if(!line.equals(str))
+          System.out.println(runFull(line));
+      }
       return true;
     }
-    public static boolean[] equals(boolean[] used, String command, String[] possibleCommands) {
-      if(used.length != possibleCommands.length)
-        return null;
-      for(int i = 0; i < possibleCommands.length; i++)
-        if(possibleCommands[i].equals(command)) {
-          used[i]=true;
-          break;
-        }
-      return used;
+    public static boolean triggerTerminal(String[] str) throws IOException, InterruptedException {
+      String line = "";
+      while(!equals(line,str)) {
+        System.out.print("$");
+        if((line = input.nextLine()).equals("exit"))
+          return false;
+        if(run("which " + line) == null)
+          System.out.println("That command does not exist!");
+        else
+          System.out.println(runFull(line));
+      }
+      return true;
     }
     /**
      * Writes to the file, overwriting all data previously in the file

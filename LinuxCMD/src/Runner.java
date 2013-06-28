@@ -8,8 +8,8 @@ public class Runner extends Libs {
 			print(os +" is not supported!");
 			return;
 		}
-		boolean[] arg = processArgs(args);
-		if(arg[0] || (!new File("./.level").exists()))
+		final boolean[] arg = processArgs(args);
+		if(arg[0] || !new File("./.level").exists())
 		  changeLevel(1);
 		clear();
 		createFile(".cmd");
@@ -80,8 +80,6 @@ public class Runner extends Libs {
 		  print("Let me think of something appropriately hard...");
 		  sleep();
 		  print("Aha! I have something!");
-		  String temp= null;
-
 		  sleep();
 		  print("Print \"Hello World\" on the terminal!");
 		  sleep();
