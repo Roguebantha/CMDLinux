@@ -129,7 +129,7 @@ public static File createFile(String f) throws IOException{
         args[1] = true;
       else if (element.equals("-q"))
         args[2] = true;
-    args[1] = !args[1];
+    shouldIclear = args[1] = !args[1];
     shouldIsleep = args[2] = !args[2];
     return args;
   }

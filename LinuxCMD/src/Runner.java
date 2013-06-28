@@ -30,30 +30,20 @@ public class Runner extends Libs {
 		  sleep(2);
 		  writeFile("./secret_key","cat is the best thing ever!");
 		  final StopWatch stopwatch = new StopWatch();
-		  print("You must find out what the key is to move on! The key is located in the folder which I am about to dump you in...");
-		  print("You must find the contents of the folder, or list them as it might be called, and discover the secret key!");
-		  print("Just the name of the file will suffice.");
-		  print("When you have found the secret key, just type \"exit\" so that you can enter it! Good luck! hehehe...");
+		  print("You must find out what the key is to move on! The key is located in the folder which I am about to dump you in...\nYou must find the contents of the folder, or list them as it might be called, and discover the secret key!\nJust the name of the file will suffice.\nWhen you have found the secret key, just type \"exit\" so that you can enter it! Good luck! hehehe...");
 		  stopwatch.start();
 		  checkKey("secret_key","Look up ls!");
-		  print("Hmph...I'm disappointed...I thought you would have gotten it faster!");
-		  print("It took you a whole " + stopwatch.getElapsedTimeSecs() + " seconds!");
-		  print("Well, with that disappointing exercise, I think it's better if we move on don't you think?");
+		  print("Hmph...I'm disappointed...I thought you would have gotten it faster!\nIt took you a whole " + stopwatch.getElapsedTimeSecs() + " seconds!\nWell, with that disappointing exercise, I think it's better if we move on don't you think?");
 		  stopwatch.stop();
 		  sleep();
 		  changeLevel(2);
 		case 2:
-		  print("Your next task is much more difficult!");
-      print("You see, that secret key file that you discovered has data in it...I want that data!");
-      print("You will recover that secret key inside the secret key file and give it to me!");
-      print("Enter the data found in the secret key!");
-      print("But I cannot make things easy for you...");
+		  print("Your next task is much more difficult!\nYou see, that secret key file that you discovered has data in it...I want that data!\nYou will recover that secret key inside the secret key file and give it to me!\nEnter the data found in the secret key!\nBut I cannot make things easy for you...");
       if(arg[2]) {
         sleep(6);
         clear();
       }
-      print("To get the contents, you must use the program cat, I mean, dog, with the file as the argument!");
-      print("Prepare to fail puny human! >:D");
+      print("To get the contents, you must use the program cat, I mean, dog, with the file as the argument!\nPrepare to fail puny human! >:D");
 		  checkKey("cat is the best thing ever!","Figure out what cat does!");
       changeLevel(3);
       deleteFile("./secret_key");
@@ -63,8 +53,7 @@ public class Runner extends Libs {
 		  sleep();
 		  print("Well fine then. You do realize that you're making things harder for yourself, don't you?");
 		  sleep();
-		  print("Now I KNOW that you will not be able to complete the next task. It's way too far above your head.");
-		  print("So why don't you just give up now?");
+		  print("Now I KNOW that you will not be able to complete the next task. It's way too far above your head.\nSo why don't you just give up now?");
 		  sleep();
 		  System.out.print("Give up? Y/N  ");
 		  if(input.nextLine().equals("Y")){
@@ -83,18 +72,14 @@ public class Runner extends Libs {
 		  sleep();
 		  print("Print \"Hello World\" on the terminal!");
 		  sleep();
-		  print("I told you you should have given up. >:D");
-		  print("I'm not helping you this time!!");
+		  print("I told you you should have given up. >:D\nI'm not helping you this time!!");
 		  if(!triggerTerminal(array("echo Hello World","echo \"Hello World\""))) {
 		   print("I knew you'd give up! >:D");
 		   return;
 		  }
 		  changeLevel(4);
 		  clear();
-		  print("Well, look at you, you little programmer you.");
-		  print("You have no idea how hard I can make this.");
-		  print("You obviously refuse to concede defeat.");
-		  print("But you will never beat me!");
+		  print("Well, look at you, you little programmer you.\nYou have no idea how hard I can make this.\nYou obviously refuse to concede defeat.\nBut you will never beat me!");
 		  sleep();
 		  print("...");
 		  sleep();
@@ -102,14 +87,11 @@ public class Runner extends Libs {
 		  sleep();
 		case 4:
 		  clear();
-		  print("For your next task, you must download a file.");
-		  print("This file is located at:");
-		  print("http://www.usna.edu/CS/si110/resources/nc.exe");
+		  print("For your next task, you must download a file.\nThis file is located at:\nhttp://www.usna.edu/CS/si110/resources/nc.exe");
 		  sleep();
-		  print("But...you MUST download it from the commandline!");
-		  print("And I will check to make sure you did too!");
-		  print("SO YOU BETTER NOT SCREW IT UP.");
-		  print("Hahahaha good luck!");
+		  print("But...you MUST download it from the commandline!\nAnd I will check to make sure you did too!");
+		  sleep();
+		  print("SO YOU BETTER NOT SCREW IT UP.\nHahahaha good luck!");
 		  triggerTerminal("wget http://www.usna.edu/CS/si110/resources/nc.exe");
 		  changeLevel(5);
 		  deleteFile("./nc.exe");
@@ -120,16 +102,10 @@ public class Runner extends Libs {
 		  sleep();
 		  print("*sigh*");
 		case 5:
-		  print("I must say...I'm getting a little demoralized myself.");
-		  print("You seem to remain no matter what I do to get rid of you.");
-		  print("I need to end this!");
-		  print("So...hehe...you better figure out how scripts work and fast!");
+		  print("I must say...I'm getting a little demoralized myself.\nYou seem to remain no matter what I do to get rid of you.\nI need to end this!\nSo...hehe...you better figure out how scripts work and fast!");
 		  sleep(5);
 		  clear();
-		  print("Here are the rules...");
-		  print("If I run the script, it prints \"TCIAL is awesome!\"");
-		  print("Call the script \"script.sh\", and put it in:");
-		  print(runFull("pwd"));
+		  print("Here are the rules...\nIf I run the script, it prints \"TCIAL is awesome!\"\nCall the script \"script.sh\", and put it in:\n" + runFull("pwd"));
 		  print("When you're done, just hit enter while focused on this window...");
 		  sleep();
 		  print("That should be easy enough, even for you.");
@@ -144,9 +120,7 @@ public class Runner extends Libs {
 		  }
 		  changeLevel(6);
 		  deleteFile("./script.sh");
-		  print("Well, well, well, it seems you won't lay down and go away will you??");
-		  print("I'm getting tired of this game.");
-		  print("Can't you just go away and leave me alone?");
+		  print("Well, well, well, it seems you won't lay down and go away will you??\nI'm getting tired of this game.\nCan't you just go away and leave me alone?");
 		  sleep();
 		  print("Never mind that's a stupid question...");
 		  sleep();
