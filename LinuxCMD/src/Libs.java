@@ -11,6 +11,7 @@ public class Libs
 {
   static Scanner input = new Scanner(System.in);
   static boolean shouldIsleep = true;
+  static String currentDirectory = commandWrap("pwd");
   static boolean shouldIclear = true;
   public static boolean allTrue(boolean[] arr) {
     for(final boolean element : arr)
@@ -18,6 +19,21 @@ public class Libs
         return false;
     return true;
   }
+public static String commandWrap(String command) {
+  try
+  {
+    return runFull(command);
+  }
+  catch (IOException e)
+  {
+    e.printStackTrace();
+  }
+  catch (InterruptedException e)
+  {
+    e.printStackTrace();
+  }
+  return "";
+}
 public static  String[] array(String... elems)
 {
   return elems;
