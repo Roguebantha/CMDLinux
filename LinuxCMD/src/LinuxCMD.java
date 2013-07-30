@@ -11,6 +11,11 @@ public class LinuxCMD extends Libs
       print(os +" is not supported!");
       return;
     }
+    if(!new File("./test").mkdir()) {
+      print("I need write permission on my working directory to work! Exiting!");
+      return;
+    }
+    deleteFile("./test");
     final boolean[] arg = processArgs(args);
     if(arg[0] || !new File("./.level").exists())
       changeLevel(1);
