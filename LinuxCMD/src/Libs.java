@@ -10,7 +10,9 @@ import java.util.Scanner;
 public class Libs
 {
   static Scanner input = new Scanner(System.in);
+  static String computerName = commandWrap("uname -n");
   static boolean shouldIsleep = true;
+  static String whoIam = commandWrap("whoami");
   static String currentDirectory = commandWrap("pwd");
   static boolean shouldIclear = true;
   public static boolean allTrue(boolean[] arr) {
@@ -19,24 +21,12 @@ public class Libs
         return false;
     return true;
   }
-public static String commandWrap(String command) {
-  try
-  {
-    return runFull(command);
-  }
-  catch (IOException e)
-  {
-    e.printStackTrace();
-  }
-  catch (InterruptedException e)
-  {
-    e.printStackTrace();
-  }
-  return "";
-}
 public static  String[] array(String... elems)
 {
   return elems;
+}
+public static void cd(String directory) throws IOException, InterruptedException {
+  currentDirectory = runFull("cd " + directory + "\npwd");
 }
 /**
  * Change the level the user is on
@@ -65,9 +55,24 @@ public static void clear() throws InterruptedException {
   if(shouldIclear)
     System.out.print("\u001b[2J\u001b[H");
 }
-public static boolean createDir(File file) {
-  return file.mkdir();
+public static String commandWrap(String command) {
+  try
+  {
+    return runFull(command);
+  }
+  catch (final IOException e)
+  {
+    e.printStackTrace();
+  }
+  catch (final InterruptedException e)
+  {
+    e.printStackTrace();
+  }
+  return "";
 }
+  public static boolean createDir(File file) {
+    return file.mkdir();
+  }
   public static boolean createDir(String file) {
     return new File(file).mkdir();
   }
@@ -107,6 +112,37 @@ public static File createFile(String f) throws IOException{
         return true;
     return false;
   }
+  public static String findFolder() throws IOException, InterruptedException {
+    cd("../..");
+    String folder = isoFolder(true);
+    cd("..");
+    while(runFull("ls -p | grep / | grep -v " + folder).length()==0) {
+      folder = isoFolder(true);
+      cd("..");
+    }
+    cd(runFull("ls -p | grep / | grep -v " + folder + " | head -n 1"));
+    return runFull("pwd");
+  }
+  /**
+   * Returns the name of the folder you are in, not the folder path.
+   * @param slash true if you want a trailing slash
+   * @return What folder you're in.
+   * @throws InterruptedException 
+   * @throws IOException 
+   */
+  public static String isoFolder(boolean slash) throws IOException, InterruptedException {
+    String sl = "";
+    if(slash)
+      sl = "/";
+    String folder = runFull("pwd");
+    if(folder.length() == 1)
+      return folder + sl;
+    String isoFolder="";
+    for(int i = folder.length() -1; folder.charAt(i) != '/'; i--)
+      isoFolder = folder.substring(i,i+1) + isoFolder;
+    return isoFolder + sl;
+    
+  }
   public static void forceDelete(File file) throws IOException
   {
       if(file.isDirectory() && file.list().length > 0) {
@@ -123,6 +159,26 @@ public static File createFile(String f) throws IOException{
    */
   public static void forceDelete(String f) throws IOException {
     forceDelete(new File(f));
+  }
+  public static void locationTerminal(String location) throws IOException, InterruptedException {
+    String line;
+    while(!currentDirectory.equals(location)) {
+      prompt();
+      if((line = input.nextLine()).equals("exit")) {
+        resetDirectory();
+        return;
+      }
+      else if(line.indexOf("cd") != -1) {
+        if(line.charAt(3) == '.')
+          currentDirectory = runFull(line + "\npwd");
+        else
+          System.out.println("Only relative filepaths are allowed!");
+      }
+      else if(run("which " + line) == null)
+        System.out.println("That command does not exist!");
+      else
+        System.out.println(runFull(line));
+    }
   }
   /**
    * @param File to create
@@ -149,6 +205,10 @@ public static File createFile(String f) throws IOException{
     shouldIsleep = args[2] = !args[2];
     return args;
   }
+  public static void prompt() {
+    currentDirectory = currentDirectory.replace("/home/" + whoIam,"~");
+    System.out.print(whoIam + "@" + computerName + ":" + currentDirectory+"$ ");
+  }
   public static int randInt(int Min, int Max) {
     return Min + (int)(Math.random() * (Max - Min + 1));
   }
@@ -169,6 +229,9 @@ public static File createFile(String f) throws IOException{
    */
   public static String readFile(String file) throws IOException, InterruptedException{
     return run("cat " + file);
+  }
+  public static void resetDirectory() throws IOException, InterruptedException {
+    currentDirectory = run("pwd");
   }
   public static int returnLevel() throws NumberFormatException, IOException, InterruptedException {
       return Integer.parseInt(readFile("./.level"));
@@ -202,7 +265,7 @@ public static String run(String command) throws IOException, InterruptedExceptio
    * @throws InterruptedException
    */
   public static String runFull(String command) throws IOException, InterruptedException{
-    writeFile(".cmd",command);
+    writeFile(".cmd","cd " + currentDirectory + "\n" + command);
     return script(".cmd");
    }
   public static String script(String script) throws IOException, InterruptedException {
@@ -221,15 +284,15 @@ public static String run(String command) throws IOException, InterruptedExceptio
   public static void sleep() throws InterruptedException {
     sleep(3);
   }
-  /**
-   * Sleeps for entered amount of seconds, if shouldIsleep == true
-   * @param Number of seconds to sleep
-   * @throws InterruptedException
-   */
-  public static void sleep(long i) throws InterruptedException {
-    if(shouldIsleep)
-      Thread.sleep(i * 1000);
-  }
+    /**
+     * Sleeps for entered amount of seconds, if shouldIsleep == true
+     * @param Number of seconds to sleep
+     * @throws InterruptedException
+     */
+    public static void sleep(long i) throws InterruptedException {
+      if(shouldIsleep)
+        Thread.sleep(i * 1000);
+    }
     /**
      * Runs a terminal until the user enters "exit".
      * @throws IOException
@@ -238,11 +301,34 @@ public static String run(String command) throws IOException, InterruptedExceptio
     public static void terminal(String hint) throws IOException, InterruptedException {
       String line;
       while(true) {
-        System.out.print("$");
-        if((line = input.nextLine()).equals("exit"))
+        prompt();
+        if((line = input.nextLine()).equals("exit")) {
+          resetDirectory();
           return;
+        }
         else if(line.equals("hint"))
           System.out.println(hint);
+        else if(line.indexOf("cd") != -1)
+          currentDirectory = runFull(line + "\npwd");
+        else if(run("which " + line) == null)
+          System.out.println("That command does not exist!");
+        else
+          System.out.println(runFull(line));
+      }
+    }
+    public static void terminal(String hint,String location) throws IOException, InterruptedException {
+      cd(location);
+      String line;
+      while(true) {
+        prompt();
+        if((line = input.nextLine()).equals("exit")) {
+          resetDirectory();
+          return;
+        }
+        else if(line.equals("hint"))
+          System.out.println(hint);
+        else if(line.indexOf("cd") != -1)
+          currentDirectory = runFull(line + "\npwd");
         else if(run("which " + line) == null)
           System.out.println("That command does not exist!");
         else
@@ -253,10 +339,14 @@ public static String run(String command) throws IOException, InterruptedExceptio
       String line = "";
       boolean used[] = new boolean[str.length];
       while(true) {
-        System.out.print("$");
-        if((line = input.nextLine()).equals("exit"))
+        prompt();
+        if((line = input.nextLine()).equals("exit")) {
+          resetDirectory();
           return false;
-        if(run("which " + line) == null)
+        }
+        if(line.indexOf("cd") != -1)
+          currentDirectory = runFull(line + "\npwd");
+        else if(run("which " + line) == null)
           System.out.println("That command does not exist!");
         else
           System.out.println(runFull(line));
@@ -275,11 +365,16 @@ public static String run(String command) throws IOException, InterruptedExceptio
     public static boolean triggerTerminal(String str) throws IOException, InterruptedException {
       String line = "";
       while(!line.equals(str)) {
-        System.out.print("$");
-        if((line = input.nextLine()).equals("exit"))
+        prompt();
+        if((line = input.nextLine()).equals("exit")) {
+          resetDirectory();
           return false;
-        if(run("which " + line) == null) System.out.println("That command does not exist!");
-        else if(!line.equals(str))
+        }
+        if(line.indexOf("cd") != -1)
+          currentDirectory = runFull(line + "\npwd");
+        else if(run("which " + line) == null)
+          System.out.println("That command does not exist!");
+        else //if(!line.equals(str))
           System.out.println(runFull(line));
       }
       return true;
@@ -287,10 +382,14 @@ public static String run(String command) throws IOException, InterruptedExceptio
     public static boolean triggerTerminal(String[] str) throws IOException, InterruptedException {
       String line = "";
       while(!equals(line,str)) {
-        System.out.print("$");
-        if((line = input.nextLine()).equals("exit"))
+        prompt();
+        if((line = input.nextLine()).equals("exit")) {
+          resetDirectory();
           return false;
-        if(run("which " + line) == null)
+        }
+        if(line.indexOf("cd") != -1)
+          currentDirectory = runFull(line + "\npwd");
+        else if(run("which " + line) == null)
           System.out.println("That command does not exist!");
         else
           System.out.println(runFull(line));
