@@ -173,9 +173,38 @@ public class LinuxCMD extends Libs
         return;
       }
       print("Easy right?");
+      sleep();
+      print("You can also use rm wih the -r command, which lets you delete folders regardless of whether or not they're empty, and -f, which deletes without prompting.");
+      sleep(6);
+      print("\"rm -rf\" is probably the most dangerous command on the Unix commandline, as it will delete everything in its path to completion. Use carefully!");
+      sleep(7);
+      print("Speaking of deleting folders...");
+      sleep();
       changeLevel(8);
     case 8:
+      print("The next command to learn is called the \"rmdir\" command.");
+      print("This stands for \"Remove directory\".");
+      sleep(6);
+      print("Use rmdir with an empty folder/directory as the argument to delete the folder.");
+      print("The folder MUST be empty, otherwise it won't be deleted.");
+      createDir("deleteMe");
+      sleep(6);
+      print("You are to delete the folder called \"deleteMe\".");
+      sleep();
+      print("Good luck!");
+      if(!triggerTerminal("rmdir deleteMe")) {
+        print("Hope you come back!");
+        return;
+      }
+      changeLevel(9);
+      print("Good job!");
+      sleep();
+      clear();
+      print("The sibling of rmdir is mkdir, which creates a folder, and works in the same style as rmdir.");
+      sleep();
+    case 9:
       
+
     }
   }
 }
