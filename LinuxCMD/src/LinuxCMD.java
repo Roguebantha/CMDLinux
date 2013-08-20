@@ -217,6 +217,13 @@ public class LinuxCMD extends Libs
       print("Look, you already have gone through all of unit 1!");
       sleep();
     case 10:
+      clear();
+      print("On to unit 2!");
+      sleep();
+      print("The first command you need to learn is the ifconfig command.");
+      sleep();
+      print("This command gives you useful information about your current interfaces, and allows you to activate and deactivate them.");
+      sleep();
       
     }
   }
