@@ -122,7 +122,7 @@ public class LinuxCMD extends Libs
       print("Echo takes an argument, which is what to print, and the argument, depending on the situation, should be enclosed in quotations.");
       sleep(6);
       print("In this case, either way will work.");
-      if(!triggerTerminal(array("Hello World","\"Hello World\""))) {
+      if(!triggerTerminal(array("echo Hello World","\"echo Hello World\""))) {
         print("Hope you come back!");
         return;
       }
@@ -133,6 +133,7 @@ public class LinuxCMD extends Libs
       sleep();
       print("You are to make a copy of the file \"file1.txt\" to the file \"file2.txt\", so that file2 holds the same data as file1.");
       sleep();
+      writeFile("file1.txt","Copy me!");
       print("To do this, you want to use the command cp, which stands for copy. cp takes two different arguments.");
       sleep();
       print("The first argument is the file to copy.");
@@ -203,8 +204,20 @@ public class LinuxCMD extends Libs
       print("The sibling of rmdir is mkdir, which creates a folder, and works in the same style as rmdir.");
       sleep();
     case 9:
+      print("The next command you need to learn is called cat.\nYou can use cat to print the contents of a file to the commandline.");
+      sleep(6);
+      writeFile("file1.txt","secretKey");
+      print("I've recreated file1.txt. Tell me what the secret key is inside file1.txt.");
+      sleep();
+      print("When you're ready to enter the key, just type \"exit\".");
+      checkKey("secretKey","Use cat!");
+      changeLevel(10);
+      print("Good job!");
+      sleep();
+      print("Look, you already have gone through all of unit 1!");
+      sleep();
+    case 10:
       
-
     }
   }
 }

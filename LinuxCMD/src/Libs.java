@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Libs
 {
   static Scanner input = new Scanner(System.in);
-  static String computerName = commandWrap("uname -n");
+  static String computerName = commandWrap("hostname");
   static boolean shouldIsleep = true;
   static String whoIam = commandWrap("whoami");
   static String currentDirectory = commandWrap("pwd");
