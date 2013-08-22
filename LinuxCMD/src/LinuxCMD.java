@@ -6,23 +6,30 @@ public class LinuxCMD extends Libs
 {
   public static void main(String[] args) throws IOException, InterruptedException
   {
+    if(args.length != 0 && (args[0].equals("--help") || args[0].equals("-h") || args[0].equals("-help"))) {
+      print("This program needs Linux to run");
+      print("Options:");
+      print(" -q    Quick Mode    Does not sleep in between sentences.");
+      print(" -nc   No clearing   Does not clear the screen. Use this if you see unprintable chars appearing.");
+      return;
+    }
     final String os = System.getProperty("os.name").toLowerCase();
     if(!os.equals("linux")){
       print(os +" is not supported!");
       return;
     }
-    if(!new File("./test").mkdir()) {
+    if(!new File("./Fdha1fhds90f4").mkdir()) {
       print("I need write permission on my working directory to work! Exiting!");
       return;
     }
-    deleteFile("./test");
+    deleteFile("./Fdha1fhds90f4");
     final boolean[] arg = processArgs(args);
     if(arg[0] || !new File("./.level").exists())
       changeLevel(1);
     clear();
     createFile(".cmd");
     runFull("chmod 755 .cmd");
-    switch(returnLevel()) {
+    switch(root() ? 14 : returnLevel()) {
     case 1:
       print("Hello puny human. My name is TCIAL. My job is to foil you at every turn and render all of your puny hopes and dreams to dust. >:(");
       sleep();
@@ -217,13 +224,47 @@ public class LinuxCMD extends Libs
       print("Look, you already have gone through all of unit 1!");
       sleep();
     case 10:
-      clear();
-      print("On to unit 2!");
+      print("Next, I'm going to teach you some more complex commands, that are also very useful.");
       sleep();
-      print("The first command you need to learn is the ifconfig command.");
+      print("The next command you're going to learn is called man.");
+      print("Man stands for \"manual\", and prints a README on any given command.");
+      sleep(6);
+      print("The command that you should look up is passed in as an argument, for example, you can use \"man whoami\" to see the README for the command whoami.");
+      sleep(5);
+      //print("I'm not going to give you a mission for this command, but you should understand how it works and be able to use it.");
+      //sleep(5);
+      print("Unfortunately, due to the way my terminal works, it's impossible for me to make man work correctly.");
+      System.out.println(numberOfTerminals());
+      input.nextLine();
+      if(numberOfTerminals() > 1) 
+        print("Fortunately, I'm detecting you already have another terminal open so I won't bother opening another one.");
+      else {
+        print("...except that I actually can by spawning another terminal, which I will now do.");
+        sleep(5);
+        runFull("gnome-terminal");
+        print("You have just been given access to a full-featured Linux terminal in the spawned window.");
+      }
       sleep();
-      print("This command gives you useful information about your current interfaces, and allows you to activate and deactivate them.");
+      print("I suggest you do not close that window but just keep it open because we will need to use it later");
       sleep();
+      print("I'll try not to open another terminal window if you already have one open.");
+      sleep();
+      writeFile("file.txt","Hello, how are you?\nAre there numbers on the left of this line?\nIf there are, good job!");
+      print("For now, I want you to look at the man page of cat, and figure out how to number the lines.");
+      print("Then I want you to come back to this window where I will have a terminal open, and use that option with cat to read the file \"file.txt\".");
+      print("Good luck!");
+      triggerTerminal("cat -n file.txt");
+      deleteFile("file.txt");
+      print("Good job!");
+      sleep();
+    case 11:
+      print("On to level 11!");
+      sleep();
+      print("For the next level, you're going to learn a basic use of nano, which is a text editor, kind of like notepad.");
+      sleep();
+      print("Nano is very easy to use,");
+      
+      
       
     }
   }

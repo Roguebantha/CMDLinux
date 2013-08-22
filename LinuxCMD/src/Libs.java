@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Libs
 {
+//  static String pid = getPID();
   static Scanner input = new Scanner(System.in);
   static String computerName = commandWrap("hostname");
   static boolean shouldIsleep = true;
@@ -21,12 +22,21 @@ public class Libs
         return false;
     return true;
   }
+//public static String getPID() {
+//  if
+//}
 public static  String[] array(String... elems)
 {
   return elems;
 }
+public static Object[] array(Object... elems) {
+  return elems;
+}
 public static void cd(String directory) throws IOException, InterruptedException {
   currentDirectory = runFull("cd " + directory + "\npwd");
+}
+public static boolean root() throws IOException, InterruptedException {
+  return "root".equals(runFull("whoami"));
 }
 /**
  * Change the level the user is on
@@ -193,8 +203,8 @@ public static File createFile(String f) throws IOException{
   public static boolean[] processArgs(String[] arg) {
     if(arg.length == 0)
       return new boolean[3];
-    final boolean[] args = new boolean[3];
-    for(final String element : arg)
+    boolean[] args = new boolean[3];
+    for(String element : arg)
       if(element.equals("-d"))
         args[0] = true;
       else if(element.equals("-nc"))
@@ -378,6 +388,13 @@ public static String run(String command) throws IOException, InterruptedExceptio
           System.out.println(runFull(line));
       }
       return true;
+    }
+    public static int numberOfTerminals() throws IOException, InterruptedException {
+      int number = 0;
+      String data = runFull("ps aux | grep -o bash");
+      while(!runFull("ps aux | grep -o bash | head -n " + Integer.toString(number)).equals(data)) {
+        number++;}
+      return number -1;
     }
     public static boolean triggerTerminal(String[] str) throws IOException, InterruptedException {
       String line = "";
