@@ -1,3 +1,5 @@
 .metadata
 .data
 /bin
+/.level
+/.cmd
