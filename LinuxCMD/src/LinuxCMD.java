@@ -29,7 +29,7 @@ public class LinuxCMD extends Libs
     clear();
     createFile(".cmd");
     runFull("chmod 755 .cmd");
-    switch(root() ? 14 : returnLevel()) {
+    switch(root() ? 13 : returnLevel()) {
     case 1:
       print("Hello puny human. My name is TCIAL. My job is to foil you at every turn and render all of your puny hopes and dreams to dust. >:(");
       sleep();
@@ -241,7 +241,7 @@ public class LinuxCMD extends Libs
       else {
         print("...except that I actually can by spawning another terminal, which I will now do.");
         sleep(5);
-        runFull("gnome-terminal");
+        spawnTerminal();
         print("You have just been given access to a full-featured Linux terminal in the spawned window.");
       }
       sleep();
@@ -262,7 +262,30 @@ public class LinuxCMD extends Libs
       sleep();
       print("For the next level, you're going to learn a basic use of nano, which is a text editor, kind of like notepad.");
       sleep();
-      print("Nano is very easy to use,");
+      print("Nano is very easy to use, and is pretty intuitive.");
+      print("When you start it, you can immediately start typing. All commands are listed at the bottom.");
+      print("All the \"^'s\" mean \"Ctrl\". Use Ctrl-O to save.");
+      print("As for your mission...");
+      sleep(12);
+      print("Use nano to create a file with the contents \"Hello World\", and save it as file.txt");
+      if(numberOfTerminals() <= 1) {
+        spawnTerminal();
+        print("I opened a terminal for you to use nano from. This shouldn't be too hard!");
+      }
+      print("Remember to not try and use nano in this window. You won't get it to work...");
+      while(!readFile("file.txt").equals("Hello World"));
+      changeLevel(12);
+      print("Great job!");
+      sleep();
+    case 12:
+      print("The next two commands you're going to learn are head and tail.");
+      sleep();
+      print("Both of them are very similar in function.");
+      print("Head is similar to cat, except that head only displays the first 10 lines of the file, rather than the entire file");
+      print("Tail prints the last 10 lines of a file.");
+      print("By using the -n argument, you can change how many lines are displayed.");
+      print("For example, \"head -n 5 file.txt\" will display the first 5 lines of file.txt instead of 10.");
+      
       
       
       

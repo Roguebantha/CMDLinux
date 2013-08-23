@@ -32,6 +32,9 @@ public static  String[] array(String... elems)
 public static Object[] array(Object... elems) {
   return elems;
 }
+public static void spawnTerminal() throws IOException, InterruptedException {
+  runFull("gnome-terminal");
+}
 public static void cd(String directory) throws IOException, InterruptedException {
   currentDirectory = runFull("cd " + directory + "\npwd");
 }
