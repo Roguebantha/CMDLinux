@@ -273,6 +273,7 @@ public class LinuxCMD extends Libs
         print("I opened a terminal for you to use nano from. This shouldn't be too hard!");
       }
       print("Remember to not try and use nano in this window. You won't get it to work...");
+      print("Good luck!");
       while(!readFile("file.txt").equals("Hello World"));
       changeLevel(12);
       print("Great job!");
@@ -285,10 +286,14 @@ public class LinuxCMD extends Libs
       print("Tail prints the last 10 lines of a file.");
       print("By using the -n argument, you can change how many lines are displayed.");
       print("For example, \"head -n 5 file.txt\" will display the first 5 lines of file.txt instead of 10.");
-      
-      
-      
-      
+      sleep(12);
+      print("These commands are quite useful when you want to see what a large file is made up of without having to look through the whole thing");
+      print("For your next mission, I have stored a secret key somewhere in the first couple lines of the file.");
+      print("You are to find the secret key, use exit, and enter the correct secret key on the following prompt.");
+      writeFile("file.txt",randomFile(500) + "\nsecretKey!\n" + randomFile(5000));
+      sleep(9);
+      print("The file to read from is \"file.txt\".");
+      checkKey("secretKey!","Type \"exit\" to enter the secret key!");
     }
   }
 }
