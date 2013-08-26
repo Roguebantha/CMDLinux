@@ -224,6 +224,7 @@ public class LinuxCMD extends Libs
       print("Look, you already have gone through all of unit 1!");
       sleep();
     case 10:
+      clear();
       print("Next, I'm going to teach you some more complex commands, that are also very useful.");
       sleep();
       print("The next command you're going to learn is called man.");
@@ -258,6 +259,7 @@ public class LinuxCMD extends Libs
       print("Good job!");
       sleep();
     case 11:
+      clear();
       print("On to level 11!");
       sleep();
       print("For the next level, you're going to learn a basic use of nano, which is a text editor, kind of like notepad.");
@@ -279,6 +281,7 @@ public class LinuxCMD extends Libs
       print("Great job!");
       sleep();
     case 12:
+      clear();
       print("The next two commands you're going to learn are head and tail.");
       sleep();
       print("Both of them are very similar in function.");
@@ -287,13 +290,58 @@ public class LinuxCMD extends Libs
       print("By using the -n argument, you can change how many lines are displayed.");
       print("For example, \"head -n 5 file.txt\" will display the first 5 lines of file.txt instead of 10.");
       sleep(12);
-      print("These commands are quite useful when you want to see what a large file is made up of without having to look through the whole thing");
+      print("These commands are quite useful when you want to see what a large file is made up of without having to look through the whole thing.");
       print("For your next mission, I have stored a secret key somewhere in the first couple lines of the file.");
       print("You are to find the secret key, use exit, and enter the correct secret key on the following prompt.");
       writeFile("file.txt",randomFile(500) + "\nsecretKey!\n" + randomFile(5000));
       sleep(9);
       print("The file to read from is \"file.txt\".");
       checkKey("secretKey!","Type \"exit\" to enter the secret key!");
+      changeLevel(13);
+      print("Great job! head and tail are used often if you're trying to see a quick summary of a file.");
+      deleteFile("file.txt");
+      sleep();
+    case 13:
+      clear();
+      print("For the next level, I'm going to teach you the command grep, which is a very powerful command.");
+      print("grep lets you search data for certain patterns or strings, kind of like the find function in a web browser or MS Word.");
+      sleep(6);
+      print("grep normally takes two arguments, the first of which is the the string/word/pattern you're searching for, the second which is name of the file to search through.");
+      sleep(5);
+      print("For example, if you were searching the file address.txt looking for the string \"hello\", you would type:");
+      print("grep address.txt hello");
+      sleep(6);
+      print("Now, I want you to search through the file web.txt looking for a web address. The secret key is the website's ending, for example, com, net, org, mil, etc.");
+      writeFile("web.txt",randomFile(2000)+"\nhttp://www.firemonkeys.au\n" + randomFile(6000));
+      sleep();
+      print("Once again, I'm going to dump you in a terminal, and your only way out is correctly entering the secret key!");
+      checkKey("au","What things are common to all typical web addresses? Search for these!");
+      changeLevel(14);
+      print("Simple enough right? grep is one of the most useful commands in the Linux terminal.");
+      deleteFile("web.txt");
+    case 14:
+      clear();
+      print("You know what's even awesomer? I'm going to teach you how to combine commands together using something called pipes!");
+      sleep(4);
+      print("Pipes are one of the most useful features of the Linux commandline, and allow you to make several commands work on the same data.");
+      print("You can imagine a long piped Linux command as a factory. In this analogy, the data to be processed is the input, or the raw materials.");
+      print("At a factory, there are stations, where the materials are processed and combined to make something else.");
+      print("In a long Linux command, each of the stations are equivalent to the different commands you might use, for example, head, echo, ls, grep, cat etc.");
+      print("You can choose which station/command the data is routed through using pipes.");
+      print("In our factory analogy, the pipes are the conveyor belts that move material/data in between the different stations.");
+      print("At the stations in a factory, the output of one station becomes input for another station using conveyor belts.");
+      print("At the commands in a Linux command, the output of one command becomes the input of another command using pipes.");
+      print("Pipes use the special character \"|\".");
+      print("So, say you wanted to search the first 10 lines of a file for a certain string of data.");
+      print("This would be a combination of the grep and head command.");
+      print("In this case, you would take the data, send it through head so you only have the first 10 lines of data, then pipe the output of head to grep, to search for the line.");
+      print("So, if you wanted to find the string \"world\" in the first 10 lines of the file rb.txt, you would say:");
+      print("head rb.txt | grep world");
+      print("The head of rb.txt piped to grep (the searcher) looking for the string \"world\".");
+      print("Now, I hope you understand how powerful this feature is. You can specify pipe after pipe after pipe, and have as many stations and conveyor belts as you want!");
+      print("Press enter to continue...");
+      input.nextLine();
+      
     }
   }
 }
