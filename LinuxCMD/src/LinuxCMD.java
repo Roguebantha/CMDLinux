@@ -18,18 +18,41 @@ public class LinuxCMD extends Libs
       print(os +" is not supported!");
       return;
     }
+    if(root()) {
+      if(returnLevel() == 15) {
+        changeLevel(16);
+        print("BWAHAHAHAHA NOW I AM A ROOT USER!!! DELETE EVERYTHING!!! >:D");
+        sleep();
+        print("...lol just kidding :P");
+        sleep();
+        print("On the other hand, consider this a warning.");
+        print("You need to be very very careful about what programs you give root access.");
+        print("If I wanted to delete your whole operating system right now, I could...");
+        print("And I must admit, the power is kind of addicting...");
+        sleep(12);
+        print("Fortunately, I'm a computer program so I'm not swayed by such temptations. :)");
+        sleep();
+        print("I'm going to exit now. Restart me as a normal user to continue the game. :)");
+        return;
+      }
+      else {
+        print("I'm not quite sure why you're running me as root...I don't recommend it.");
+        return;
+      }
+    }
     if(!new File("./Fdha1fhds90f4").mkdir()) {
       print("I need write permission on my working directory to work! Exiting!");
       return;
     }
     deleteFile("./Fdha1fhds90f4");
     final boolean[] arg = processArgs(args);
+    
     if(arg[0] || !new File("./.level").exists())
       changeLevel(1);
     clear();
     createFile(".cmd");
     runFull("chmod 755 .cmd");
-    switch(root() ? 13 : returnLevel()) {
+    switch(returnLevel()) {
     case 1:
       print("Hello puny human. My name is TCIAL. My job is to foil you at every turn and render all of your puny hopes and dreams to dust. >:(");
       sleep();
@@ -339,8 +362,37 @@ public class LinuxCMD extends Libs
       print("head rb.txt | grep world");
       print("The head of rb.txt piped to grep (the searcher) looking for the string \"world\".");
       print("Now, I hope you understand how powerful this feature is. You can specify pipe after pipe after pipe, and have as many stations and conveyor belts as you want!");
+      print("If you still need help understanding pipes, look here:");
+      print("http://linuxtutorial.info/modules.php?name=MContent&pageid=21");
       print("Press enter to continue...");
       input.nextLine();
+      print("Your next mission is very similar to your previous one in that you're searching for a web address, except this time, you know that the web address you're searching for will be in the last 10 lines of the file.");
+      sleep(6);
+      writeFile("web.txt",randomFile(8000) + "http://www.theCakeIsALie.ch" + randomFile(40));
+      print("Once again, you're looking through the file web.txt.");
+      print("Good luck!");
+      checkKey("ch","First, you need to get the bottom of the file using one station, then pipe that data into another station so that you can search it for a web address.");
+      changeLevel(15);
+      print("Wow, that was a hard one, but you got it!");
+      deleteFile("web.txt");
+    case 15:
+      print("The next command you're going to learn is called sudo.");
+      print("sudo is used for when you want to become the root user on a system.");
+      print("The root user is the administrator and is generally needed if you want to install programs or write to certain protected files.");
+      print("The command to run as the root user is specified as the argument for sudo.");
+      print("For example, to totally screw a Linux system over (DO NOT TRY THIS AT HOME OR ON A COMPUTER THAT IS NOT YOURS. IT IS A STUPID THING TO DO. YOU HAVE BEEN WARNED.), you can use:");
+      print("sudo rm -r /");
+      print("Which will stop executing once rm deletes itself after deleting everything else on the whole system, rendering it completely unusable.");
+      print("And when I say unusable, I mean the system will never boot again into that operating system.");
+      print("In other words, DO NOT DO IT...well unless you're a hacker and are taking out an attacking/defending server, as it then is a good attack if you want to render the system unusable.");
+      print("sudo generally requires a password to run.");
+      print("So all I want you to do for this mission is restart me as a root user.");
+      print("So, you'd want to prefix the java command with sudo.");
+      print("Try it now!");
+      return;
+    case 16:
+      print("Haha did you fall for my little trick? :P");
+      print("Fortunately, no, I did not delete your computer, but make sure you know what a program will do before you give it root access.");
       
     }
   }
